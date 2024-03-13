@@ -37,11 +37,14 @@ git clone https://github.com/jpataflafla/go_huffman_coding
 # go to the project folder
 cd go_huffman_coding
 
-# Build and run the app
+# Build and start the app
 docker compose build
+# If there's an issue, check permissions as described in potential errors (if not using sudo), or run "newgrp docker" on Linux.
+
+# Start the service (you can do it without -d for detached mode)
 docker compose up -d
 
-# Done
+# Done. The listening port exposed to the hosting device is 80.  
 
 ```
 The listening port exposed to the hosting device is 80.  
