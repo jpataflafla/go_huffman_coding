@@ -31,8 +31,11 @@ It resembles a Huffman tree (Huffman coding problem), but it operates on symbols
 ```bash
 # be sure docker is installed https://docs.docker.com/engine/install/
 
-# Clone the repository
+# Clone this repository
 git clone https://github.com/jpataflafla/go_huffman_coding
+
+# go to the project folder
+cd go_huffman_coding
 
 # Build and run the app
 docker compose build
