@@ -4,6 +4,10 @@ import (
 	"container/heap"
 )
 
+// NOTE: I acknowledge that there are many comments in the code. They are added to explain what is happening in each code snippet.
+// In practice, excessive comments should be avoided in commercial projects, and the code should be self-descriptive and readable.
+// Comments serve as a narrative describing the process of creating the logic behind command code generation.
+
 // example usage and explanation
 /*func main() {
 	// The task is to implement an algorithm that:

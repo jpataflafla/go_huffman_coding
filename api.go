@@ -39,7 +39,7 @@ func (s *simpleAPIServer) Run() {
 	http.ListenAndServe(s.listenAddress, router)
 }
 
-func WriteJson(w http.ResponseWriter, status int, v any) error {
+func writeJson(w http.ResponseWriter, status int, v any) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 
@@ -52,7 +52,7 @@ func makeHTTPHandlerFunc(apiHandlerFunc apiHandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if err := apiHandlerFunc(w, r); err != nil {
 			// error handling
-			WriteJson(w, http.StatusBadRequest, APIError{Error: err.Error()})
+			writeJson(w, http.StatusBadRequest, APIError{Error: err.Error()})
 		}
 	}
 }
@@ -64,9 +64,7 @@ func (s *simpleAPIServer) handleCommands(w http.ResponseWriter, r *http.Request)
 	if r.Method == "POST" {
 		return s.handlePostCommands(w, r)
 	}
-	// if r.Method == "DELETE"{
-	// 	return nil
-	// }
+
 	return fmt.Errorf("request method not allowed: %s", r.Method)
 }
 
@@ -90,7 +88,7 @@ func (s *simpleAPIServer) handleGetCodeForCommandFromLastCommandLog(w http.Respo
 
 	// Construct the response
 	commandCode := CommandCodeOnly{CommandCode: code}
-	return WriteJson(w, http.StatusOK, commandCode)
+	return writeJson(w, http.StatusOK, commandCode)
 }
 
 func (s *simpleAPIServer) handlePostCommands(w http.ResponseWriter, r *http.Request) error {
@@ -104,7 +102,7 @@ func (s *simpleAPIServer) handlePostCommands(w http.ResponseWriter, r *http.Requ
 		return err
 	}
 
-	return WriteJson(w, http.StatusOK, commandsLogWithTimestamp)
+	return writeJson(w, http.StatusOK, commandsLogWithTimestamp)
 }
 
 func (s *simpleAPIServer) handleGetAllCommandLogs(w http.ResponseWriter) error { //, r *http.Request) error {
@@ -114,7 +112,7 @@ func (s *simpleAPIServer) handleGetAllCommandLogs(w http.ResponseWriter) error {
 		return err
 	}
 
-	return WriteJson(w, http.StatusOK, commandLogs)
+	return writeJson(w, http.StatusOK, commandLogs)
 }
 
 func (s *simpleAPIServer) handleGetAllCommandCodes(w http.ResponseWriter, r *http.Request) error {
@@ -123,7 +121,7 @@ func (s *simpleAPIServer) handleGetAllCommandCodes(w http.ResponseWriter, r *htt
 		return err
 	}
 
-	return WriteJson(w, http.StatusOK, allCommandCodes)
+	return writeJson(w, http.StatusOK, allCommandCodes)
 }
 
 // Define a custom error type for command not found

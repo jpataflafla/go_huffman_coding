@@ -27,17 +27,3 @@ type CommandLog struct {
 type CommandCodeOnly struct {
 	CommandCode string `json:"rcr"`
 }
-
-/*
-POST /commands that would accept a json payload with the log of issued commands, in
-the following structure:
-{
-“commands”: List[string]
-}
-
-GET /rcrs/{command} that should return the RCR for the given command. The expected
-shape of the returned payload is
-{
-“rcr”:string
-}
-*/
