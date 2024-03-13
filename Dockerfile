@@ -13,6 +13,8 @@ WORKDIR /command-encoding-service
 # Copy the entire application source code into the container
 COPY . .
 
+RUN mkdir -p bin
+
 # Download dependencies and build the binary
 RUN go mod download
 RUN go build -o bin/command-encoding-service
