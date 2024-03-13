@@ -4,7 +4,9 @@ import (
 	"database/sql"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"log"
+	"os"
 	"time"
 
 	_ "github.com/lib/pq"
@@ -28,7 +30,17 @@ type SimplePostgresDB struct {
 }
 
 func NewSimplePostgressDB() (*SimplePostgresDB, error) {
-	connStr := `user=postgres dbname=postgres sslmode=disable`
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbname := os.Getenv("DB_NAME")
+	sslmode := os.Getenv("PGSSLMODE")
+	port := os.Getenv("DB_PORT")
+	host := os.Getenv("DB_HOST")
+
+	connStr := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=%s host=%s port=%s", user, password, dbname, sslmode, host, port)
+
+	fmt.Println(connStr)
+
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)

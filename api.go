@@ -9,7 +9,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"command-encoding-service/generate_codes"
+	"command-encoding-service/pkg/generate_codes"
 )
 
 type simpleAPIServer struct {
