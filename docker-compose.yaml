@@ -13,7 +13,8 @@ services:
     # volumes:
     #   - .:/usr/src/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: postgres
@@ -23,6 +24,11 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 1s
+      retries: 30
 # uncomment to expose and map port to db on host
 #ports:
 # - "5433:5432" # map port to something different than default 5432

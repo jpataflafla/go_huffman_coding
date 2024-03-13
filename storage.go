@@ -39,8 +39,6 @@ func NewSimplePostgressDB() (*SimplePostgresDB, error) {
 
 	connStr := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=%s host=%s port=%s", user, password, dbname, sslmode, host, port)
 
-	fmt.Println(connStr)
-
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
