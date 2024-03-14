@@ -73,8 +73,7 @@ To get code generated for the command (generated based on the most recently adde
   }
   ```
 
-Due to the current limitations and simplicity of the system, queries always reference the most recent list of commands.
-While the database has the capability to store historical command logs and future updates may allow specifying against which log the command code should be generated, for the demo, the database retains only the last 100 command logs.
+Due to current limitations and the simplicity of the system, queries always refer to the most recent list of commands.  Although the database can store historical command logs, and future updates may allow you to specify which log to generate command code for, in the demo version the database only stores the last 100 command logs.  
 
 To view the command logs stored inside db, use:  
 **GET:**
