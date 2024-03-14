@@ -1,4 +1,4 @@
-# command encoding service written in Go using a minimal number of packages
+# a command encoding service written in Go using a minimal number of packages and inspired by the Huffman coding algorithm
 
 ## Overview
 
